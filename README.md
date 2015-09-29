@@ -1,2 +1,2 @@
-# wanteet-api-example
-A sample app demonstrating the Wanteet API
+# Wanteet API Example
+This is a sample app, built using AngularJS, that demonstrates the basic use case of Wanteet API
