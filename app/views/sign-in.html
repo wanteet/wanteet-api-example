@@ -1,0 +1,68 @@
+
+  <script>
+  $(document)
+    .ready(function() {
+      $('.ui.form')
+        .form({
+          fields: {
+            email: {
+              identifier  : 'email',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your e-mail'
+                },
+                {
+                  type   : 'email',
+                  prompt : 'Please enter a valid e-mail'
+                }
+              ]
+            },
+            password: {
+              identifier  : 'password',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your password'
+                },
+                {
+                  type   : 'length[6]',
+                  prompt : 'Your password must be at least 6 characters'
+                }
+              ]
+            }
+          }
+        })
+      ;
+    })
+  ;
+  </script>
+<div class="ui two column middle aligned center aligned grid container" data-ng-controller="authentication-controller">
+  <div class="column">
+    <h2 class="ui image header">
+      <img src="http://www.wanteet.com/assets/img/wanteet-top-v3.png" class="image" style="width:auto">
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <form class="ui large form" data-ng-class="(errorMessage)?'error':''" data-ng-submit="signin()">
+      <div class="ui raised segment">
+        <div class="required field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" data-ng-model="credentials.username" placeholder="E-mail address">
+          </div>
+        </div>
+        <div class="required field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" data-ng-model="credentials.password" placeholder="Password">
+          </div>
+        </div>
+        <button type="submit" class="ui fluid large green submit button">Login</button>
+      </div>
+
+      <div class="ui error message">{{errorMessage}}</div>
+    </form>
+  </div>
+</div>

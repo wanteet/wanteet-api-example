@@ -4,8 +4,6 @@ var ApplicationConfiguration = (function () {
     // Init module configuration options
     var applicationModuleName = 'wanteet-api-example';
     var applicationModuleVendorDependencies = [
-        'ngResource',
-        'ngCookies',
         'LocalStorageModule',
         'ui.router'
     ];

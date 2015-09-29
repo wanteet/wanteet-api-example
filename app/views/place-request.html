@@ -1,0 +1,81 @@
+<div class="ui center grid container" data-ng-controller="buyer-request-controller" data-ng-init='init()'>
+  <div class="column" data-ng-if="step == 1">
+    <h2 class="ui image header">
+      <img src="http://www.wanteet.com/assets/img/wanteet-top-v3.png" class="image" style="width:auto">
+      <div class="content">
+        Place your request
+      </div>
+    </h2>
+    <form name="{{service}}Form" class="ui large {{formState}} form" data-ng-class="(errorMessage)?'error':''" data-ng-submit="processAnswers()">
+      <div class="ui raised segment">
+        <div data-ng-repeat="question in questions">
+              <div class="field" data-ng-class="(question.required)?'required':''"
+                  data-ng-if="question.type == 'text'">
+                    <label data-ng-bind="question.text"></label>
+                    <input type="{{question.type}}" id="text{{question.id}}"
+                           name="q{{question.id}}"
+                           data-ng-model="answers[question.id]" data-ng-required="question.required">
+              </div>
+              <div class="field" data-ng-class="(question.required)?'required':''"
+                  data-ng-if="question.type == 'radio'">
+                  <div class="grouped fields">
+                    <label data-ng-bind="question.text"></label>
+                    <div class="field"
+                        data-ng-repeat="choice in  question.choices track by $index">
+                        <div class="ui radio checkbox">
+                          <input type="radio" id="radio{{question.id}}{{$index}}"
+                                 name="q{{question.id}}"
+                                 value="{{choice}}" data-ng-model="answers[question.id]"
+                                 data-ng-required="$first && question.required" class="hidden">
+                          <label for="radio{{question.id}}{{$index}}"
+                                 data-ng-bind="choice"></label>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="field" data-ng-class="(question.required)?'required':''"
+                  data-ng-if="question.type == 'checkbox'">
+                  <div class="grouped fields">
+                    <label data-ng-bind="question.text"></label>
+                    <div class="field"
+                        data-ng-repeat="choice in  question.choices track by $index">
+                        <div class="ui checkbox">
+                          <input type='checkbox' name="q{{question.id}}"
+                                id="check{{question.id}}{{$index}}"
+                                data-ng-true-value="'{{choice}}'"
+                                data-ng-model="answers[question.id][$index]" class="hidden">
+                          <label for="check{{question.id}}{{$index}}"
+                                 data-ng-bind="choice"></label>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="field" data-ng-class="(question.required)?'required':''"
+                  data-ng-if="question.type == 'number'">
+                    <label data-ng-bind="question.text"></label>
+                    <input type="{{question.type}}" id="number{{question.id}}"
+                           name="q{{question.id}}" min="0"
+                         data-ng-model="answers[question.id]" data-ng-required="question.required">
+              </div>
+              <div class="field" data-ng-class="(question.required)?'required':''"
+                  data-ng-if="question.type == 'datetime'">
+                    <label data-ng-bind="question.text"></label>
+                    <input type="{{question.type}}" id="text{{question.id}}"
+                           name="q{{question.id}}"
+                           data-ng-model="answers[question.id]" data-ng-required="question.required">
+              </div>
+              <div class="field" data-ng-class="(question.required)?'required':''"
+                  data-ng-if="question.type == 'textarea'">
+                    <label data-ng-bind="question.text"></label>
+                    <textarea rows="2" id="textarea{{question.id}}"
+                              name="q{{question.id}}"
+                            data-ng-model="answers[question.id]"
+                             data-ng-required="question.required"></textarea>
+              </div>
+      </div>
+      <button type="submit" class="ui large green submit button">Set Details</button>
+
+    </form>
+  </div>
+  <div class="ui error message">{{errorMessage}}</div>
+</div>
